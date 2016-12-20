@@ -56,6 +56,16 @@ define(function(require) {
                     editable: false,
                     sortable: true,
                     sortType: 'toggle',
+                    sortValue: function(model, colName) {
+                        var sortVal = model.get(colName);
+                        if (sortVal === null || sortVal === undefined || sortVal === '') {
+                            // Force null values to the end of the ascending sorted list
+                            // NOTE: only works for sorting string value columns
+                            return 'z';
+                        } else {
+                            return 'a ' + sortVal;
+                        }
+                    },
                     headerCell: BaseHeaderCell,
                     cell: 'string'
                 };

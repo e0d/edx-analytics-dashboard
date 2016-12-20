@@ -95,7 +95,17 @@ define(function(require) {
                     name: key,
                     editable: false,
                     sortable: true,
-                    sortType: 'toggle'
+                    sortType: 'toggle',
+                    sortValue: function(model, colName) {
+                        var sortVal = model.get(colName);
+                        if (sortVal === null || sortVal === undefined || sortVal === '') {
+                            // Force null values to the end of the ascending sorted list
+                            // NOTE: only works for sorting string value columns
+                            return 'z';
+                        } else {
+                            return 'a ' + sortVal;
+                        }
+                    }
                 };
 
                 if (key === 'username') {

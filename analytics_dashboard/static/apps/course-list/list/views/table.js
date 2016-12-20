@@ -42,10 +42,21 @@ define(function(require) {
                     editable: false,
                     sortable: true,
                     sortType: 'toggle',
+                    sortValue: function(model, colName) {
+                        var sortVal = model.get(colName);
+                        if (sortVal === null || sortVal === undefined || sortVal === '') {
+                            // Force null values to the end of the ascending sorted list
+                            // NOTE: only works for sorting string value columns
+                            return 'z';
+                        } else {
+                            return 'a ' + sortVal;
+                        }
+                    },
                     headerCell: BaseHeaderCell
                 };
                 if (INTEGER_COLUMNS.indexOf(key) !== -1) {
                     column.cell = 'integer';
+                    column.sortValue = key; // reset to normal sorting for integer columns
                 } else if (DATE_COLUMNS.indexOf(key) !== -1) {
                     column.cell = Backgrid.Extension.MomentCell.extend({
                         displayLang: Utils.getMomentLocale(),
