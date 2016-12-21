@@ -63,6 +63,7 @@ define(function(require) {
                         displayFormat: 'L',
                         render: function() {
                             var result = Backgrid.Extension.MomentCell.prototype.render.call(this, arguments);
+                            // Null values are rendered by MomentCell as "Invalid date". Convert to a nicer string:
                             if (result.el.textContent === 'Invalid date') {
                                 result.el.textContent = '--';
                                 $(result.el).attr('aria-label', 'None defined');

@@ -78,6 +78,8 @@ define(function(require) {
                 }
             } catch (e) {
                 // These JS errors occur when trying to parse invalid URL parameters
+                // FIXME: they also catch a whole lot of other kinds of errors where the alert message doesn't make much
+                // sense.
                 if (e instanceof RangeError || e instanceof TypeError) {
                     this.options.rootView.showAlert('error', gettext('Invalid Parameters'),
                         gettext('Sorry, we couldn\'t find any courses that matched that query.'),
