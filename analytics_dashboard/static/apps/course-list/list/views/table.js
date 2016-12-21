@@ -65,6 +65,7 @@ define(function(require) {
                             var result = Backgrid.Extension.MomentCell.prototype.render.call(this, arguments);
                             if (result.el.textContent === 'Invalid date') {
                                 result.el.textContent = '--';
+                                $(result.el).attr('aria-label', 'None defined');
                             }
                             return result;
                         }
@@ -72,6 +73,9 @@ define(function(require) {
                 } else if (key === 'catalog_course_title') {
                     column.cell = CourseIdAndNameCell;
                 } else if (key === 'pacing_type') {
+                    // NOTE: pacing type is a filterable field now, which means it is not displayed as a column in the
+                    // table. However, I'm keeping this here (along with the pacing-cell.js/underscore) in case we will
+                    // ever want to display it again in the future. If we are sure that will never happen, then delete.
                     column.cell = PacingCell;
                 } else {
                     column.cell = 'string';
