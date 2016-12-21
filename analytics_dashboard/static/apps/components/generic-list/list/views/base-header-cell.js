@@ -34,7 +34,7 @@ define(function(require) {
         render: function() {
             var directionWord;
             if (this.collection.state.sortKey && this.collection.state.sortKey === this.column.attributes.name) {
-                directionWord = this.collection.state.order ? 'descending' : 'ascending';
+                directionWord = this.collection.state.order === 1 ? 'descending' : 'ascending';
                 this.column.attributes.direction = directionWord;
             }
 
