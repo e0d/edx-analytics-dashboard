@@ -25,7 +25,7 @@ define(function(require) {
         },
 
         state: {
-            pageSize: 25,
+            pageSize: 100,
             sortKey: 'count',
             order: 1
         }
